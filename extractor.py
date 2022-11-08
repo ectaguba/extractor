@@ -2,7 +2,7 @@ import re
 import pyperclip
 
 # saves whatever is on your clipboard
-# ex. if you have "spam" copied, then that is pasted into text
+# ex. if you have "spam" copied, then that is pasted into variable text
 text = str(pyperclip.paste())
 
 phoneRegex = re.compile(r'''
@@ -16,7 +16,7 @@ phoneRegex = re.compile(r'''
     (\s*(ext|x|ext.)\s*(\d{2,5}))? # [7] Extension
 ''', re.VERBOSE)
 emailRegex = re.compile(r'''
-    \w+@[a-zA-Z]+\.[a-zA-Z]+
+    [a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+
 ''', re.VERBOSE)
 
 phoneMatches = re.findall(phoneRegex, text)
@@ -28,7 +28,7 @@ def findMatches():
     for groups in phoneMatches:
         # Convert into uniform pattern
         # Target groups with the primary digits (See phoneRegex)
-        # parameter in join must be iterable [array]
+        # parameter in .join() must be iterable [array]
         phoneNum = '-'.join([groups[2], groups[4], groups[6]])
         # Insert country code
         if groups[0] != "":
