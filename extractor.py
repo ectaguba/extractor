@@ -47,7 +47,7 @@ def findMatches():
 def copyToClipboard(matches):
     if len(matches) > 0:
         pyperclip.copy("\n".join(matches))
-        print("Copied to Clipboard:\n")
+        print("\nCopied to Clipboard:\n")
         print("\n".join(matches))
     else:
         print("No matches found")
